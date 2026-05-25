@@ -1,0 +1,289 @@
+/* Налаштування плавного скролу для навігації */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Скидання базових відступів браузера */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- ШАПКА САЙТУ (Header) --- */
+header {
+    background-color: #e6f2e6; /* Світло-зелений фон */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    /* Анімація для плавної зміни висоти через transition */
+    transition: height 0.4s ease, box-shadow 0.4s ease;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+/* Клас, що автоматично додається через JS при прокрутці */
+header.scrolled {
+    height: 65px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.header-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a4a1a;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Відступи між елементами навігації */
+}
+
+nav a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* Використання псевдокласу :hover для меню */
+nav a:hover {
+    color: #2e8b57;
+}
+
+/* --- ОСНОВНИЙ КОНТЕНТ (Main) --- */
+main {
+    width: 90%;
+    margin: 130px auto 40px; /* Великий відступ зверху, щоб фіксована шапка не перекривала контент */
+    max-width: 1200px;
+    flex: 1; /* Притискає підвал до низу сторінки */
+    background-color: #ffffff;
+}
+
+/* Стилі для загальних текстових секцій (Продукти та Блог) */
+.content-section {
+    padding: 60px 0;
+    border-top: 1px solid #eaeaea;
+}
+
+.content-section h2 {
+    font-size: 1.8rem;
+    color: #1a4a1a;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: #666666;
+    margin-bottom: 35px;
+}
+
+/* Гнучкі контейнери на базі Flexbox */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Картки продуктів */
+.info-card {
+    flex: 1;
+    min-width: 280px;
+    background: #fdfdfd;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.info-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.info-card h3 {
+    font-size: 1.25rem;
+    color: #2e8b57;
+    margin-bottom: 12px;
+}
+
+/* Блоки новин блогу */
+.blog-post {
+    flex: 1;
+    min-width: 280px;
+    background: #ffffff;
+    border-left: 4px solid #2e8b57;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.blog-post h4 {
+    font-size: 1.2rem;
+    color: #1a4a1a;
+    margin-bottom: 10px;
+}
+
+.blog-post p {
+    font-size: 0.95rem;
+    color: #555555;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    color: #2e8b57;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* --- СЕКЦІЯ РЕЦЕПТІВ --- */
+.recipes-section {
+    padding: 40px 0 60px;
+}
+
+.recipes-section h1 {
+    font-size: 2.2rem;
+    color: #1a4a1a;
+    margin-bottom: 5px;
+}
+
+.recipes-section h2 {
+    font-size: 1.2rem;
+    color: #666666;
+    font-weight: 400;
+    margin-bottom: 35px;
+}
+
+/* СЕТКА КАРТОЧЕК (Flexbox) */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Обов'язкові відступи між картками */
+}
+
+.recipe-card {
+    background: #ffffff;
+    /* На десктопах: 2 картки в ряд з урахуванням gap */
+    flex-basis: calc(50% - 15px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Псевдоклас :hover для карток */
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover; /* Зображення адаптивно заповнює область */
+}
+
+.recipe-card h3 {
+    padding: 20px 20px 10px;
+    font-size: 1.4rem;
+    color: #1a4a1a;
+}
+
+/* Список інгредієнтів */
+.recipe-card ul {
+    list-style-type: disc;
+    padding: 0 20px 20px 40px;
+    flex-grow: 1; /* Вирівнює нижній блок по висоті */
+}
+
+/* Псевдоклас :first-child для першого елемента списку інгредієнтів */
+.recipe-card ul li:first-child {
+    font-weight: 600;
+    color: #2e8b57;
+}
+
+.recipe-card .prep-time {
+    padding: 15px 20px;
+    background-color: #fafafa;
+    border-top: 1px solid #eaeaea;
+    color: #666666;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* --- ПІДВАЛ САЙТУ (Footer) --- */
+footer {
+    background-color: #1a4a1a; /* Темно-зелений фон */
+    color: #ffffff; /* Білий текст */
+    text-align: center;
+    padding: 25px 0;
+    font-size: 0.95rem;
+}
+
+.footer-container p {
+    margin-bottom: 5px;
+}
+
+/* --- АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ --- */
+@media (max-width: 768px) {
+    header {
+        height: 110px;
+    }
+    
+    header.scrolled {
+        height: 110px; /* Вимикаємо зменшення на мобілках */
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+    main {
+        margin-top: 150px;
+    }
+
+    /* На мобільних: 1 картка в ряд з рамкою та тінями */
+    .recipe-card {
+        flex-basis: 100%;
+        border: 2px solid #ccc; /* Чітка рамка */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Виражені тіні */
+    }
+    
+    .info-card, .blog-post {
+        flex-basis: 100%;
+    }
+}
